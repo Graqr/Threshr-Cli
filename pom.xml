@@ -17,9 +17,6 @@
     <jdk.version>17</jdk.version>
     <release.version>17</release.version>
     <micronaut.version>4.2.4</micronaut.version>
-    <asciidoctor.maven.plugin.version>2.2.2</asciidoctor.maven.plugin.version>
-    <asciidoctorj.version>2.5.10</asciidoctorj.version>
-    <asciidoctorj.diagram.version>2.2.13</asciidoctorj.diagram.version>
     <jruby.version>9.4.5.0</jruby.version>
     <exec.mainClass>com.graqr.ThreshrCliCommand</exec.mainClass>
   </properties>
@@ -111,72 +108,6 @@
   </dependencies>
   <build>
     <plugins>
-      <plugin>
-        <groupId>io.micronaut.maven</groupId>
-        <artifactId>micronaut-maven-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <configuration>
-          <includes>
-            <include>**/*Spec.*</include>
-            <include>**/*Test.*</include>
-          </includes>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.asciidoctor</groupId>
-        <artifactId>asciidoctor-maven-plugin</artifactId>
-        <version>${asciidoctor.maven.plugin.version}</version>
-        <dependencies>
-          <dependency>
-            <groupId>org.asciidoctor</groupId>
-            <artifactId>asciidoctorj</artifactId>
-            <version>${asciidoctorj.version}</version>
-          </dependency>
-          <dependency>
-            <groupId>org.asciidoctor</groupId>
-            <artifactId>asciidoctorj-diagram</artifactId>
-            <version>${asciidoctorj.diagram.version}</version>
-          </dependency>
-        </dependencies>
-        <configuration>
-          <sourceDirectory>src/docs/asciidoc</sourceDirectory>
-          <requires>
-            <require>asciidoctor-diagram</require>
-          </requires>
-          <!-- Attributes common to all output formats -->
-          <attributes>
-            <endpoint-url>https://example.org</endpoint-url>
-            <sourcedir>${project.build.sourceDirectory}</sourcedir>
-            <project-version>${project.version}</project-version>
-          </attributes>
-        </configuration>
-        <executions>
-          <execution>
-            <id>asciidoc-to-html</id>
-            <phase>generate-resources</phase>
-            <goals>
-              <goal>process-asciidoc</goal>
-            </goals>
-            <configuration>
-              <backend>html5</backend>
-              <sourceHighlighter>coderay</sourceHighlighter>
-              <attributes>
-                <imagesdir>./images</imagesdir>
-                <toc>left</toc>
-                <icons>font</icons>
-                <sectanchors>true</sectanchors>
-                <!-- set the idprefix to blank -->
-                <idprefix/>
-                <idseparator>-</idseparator>
-                <docinfo1>true</docinfo1>
-              </attributes>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
       <plugin>
         <groupId>org.codehaus.gmavenplus</groupId>
         <artifactId>gmavenplus-plugin</artifactId>
