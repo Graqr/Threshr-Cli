@@ -3,12 +3,14 @@ on:
   push:
     branches: [ "main" ]
   pull_request:
-    branches: [ "main", "release/*"]
+    branches: [ "main", "release/*" ]
 jobs:
   build:
     env:
       THRESHR_KEY: ${{ vars.THRESHR_KEY }}
       THRESHR_CHANNEL: ${{ vars.THRESHR_CHANNEL }}
+      USERNAME: jonathan-zollinger
+      PASSWORD: ${{ secrets.READ_PACKAGES }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -19,4 +21,4 @@ jobs:
           distribution: 'zulu'
           cache: maven
       - name: Package with Maven
-        run: mvn -B package -Dmvn.skip.test=true --file pom.xml
+        run: mvn -U -B package -Dmvn.skip.test=true --file pom.xml --settings settings.xml

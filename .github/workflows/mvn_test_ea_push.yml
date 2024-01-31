@@ -6,6 +6,8 @@ jobs:
     env:
       THRESHR_KEY: ${{ vars.THRESHR_KEY }}
       THRESHR_CHANNEL: ${{ vars.THRESHR_CHANNEL }}
+      USERNAME: jonathan-zollinger
+      PASSWORD: ${{ secrets.READ_PACKAGES }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -16,4 +18,4 @@ jobs:
           distribution: 'zulu'
           cache: maven
       - name: Test with Maven
-        run: mvn -B test --file pom.xml
+        run: mvn -U -B test --file pom.xml --settings settings.xml
