@@ -1,5 +1,6 @@
 package com.gragr.threshr_cli
 
+import com.gragr.threshr.cli.command.Command
 import io.micronaut.configuration.picocli.PicocliRunner
 import io.micronaut.context.ApplicationContext
 import io.micronaut.context.env.Environment
